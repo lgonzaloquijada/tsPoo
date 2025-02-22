@@ -15,7 +15,7 @@ export class MyDate {
     return this._day;
   }
 
-  isLeapYear(): boolean {
+  get isLeapYear(): boolean {
     return (
       this.year % 4 === 0 && (this.year % 100 !== 0 || this.year % 400 === 0)
     );
