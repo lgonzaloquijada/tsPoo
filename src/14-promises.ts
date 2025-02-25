@@ -19,7 +19,7 @@ import axios from 'axios';
   }
 
   async function getProductsAsync(): Promise<any> {
-    const rta = await axios.get('https://api.escuelajs.co/api/v1/products').;
+    const rta = await axios.get('https://api.escuelajs.co/api/v1/products');
     return rta.data;
   }
 
