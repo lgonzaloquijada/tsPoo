@@ -4,7 +4,7 @@ import { ProductService } from '../models/product-service.model';
 import { Product } from '../models/product.model';
 
 export class ProductHttpService implements ProductService {
-  private url = 'https://api.escuelajs.co/api/v1/products';
+  protected url = 'https://api.escuelajs.co/api/v1/products';
 
   async getAll(): Promise<Product[]> {
     const { data } = await axios.get<Product[]>(this.url);
