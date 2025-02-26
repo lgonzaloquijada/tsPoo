@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { Category } from '../models/category.model';
 import { Product } from '../models/product.model';
+import { UpdateProductDto } from '../dtos/product.dto';
 
 export class BaseHttpService<TypeClass> {
   data: TypeClass[] = [];
@@ -9,6 +10,14 @@ export class BaseHttpService<TypeClass> {
 
   async getAll(): Promise<TypeClass[]> {
     const { data } = await axios.get<TypeClass[]>(this.url);
+    return data;
+  }
+
+  async update<TypeM, TypeDTO>(
+    id: TypeM,
+    changes: TypeDTO
+  ): Promise<TypeClass> {
+    const { data } = await axios.put<TypeClass>(`${this.url}/${id}`, changes);
     return data;
   }
 }
@@ -37,4 +46,10 @@ export class BaseHttpService<TypeClass> {
   );
   const category = await categoryService.getAll();
   console.log(category);
+
+  const productUpdate = await productService.update<number, UpdateProductDto>(
+    1,
+    { title: 'New Product' }
+  );
+  console.log(productUpdate);
 })();
